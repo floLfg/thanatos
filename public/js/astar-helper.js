@@ -4,21 +4,25 @@ function AstarHelper(grid) {
 	this.graph = new Graph(grid, {diagonal: true});
 }
 
-AstarHelper.prototype.search = function(startPoint, endPoint) {
-	var startGridNode = this.graph.grid[startPoint.x][startPoint.y];
-	var endGridNode = this.graph.grid[endPoint.x][endPoint.y];
+AstarHelper.prototype = {
 
-	var path = astar.search(this.graph, startGridNode, endGridNode);
-	resultPath = this.translatePath(path);
-	return resultPath;
-};
+	search : function(startPoint, endPoint) {
+		var startGridNode = this.graph.grid[startPoint.x][startPoint.y];
+		var endGridNode = this.graph.grid[endPoint.x][endPoint.y];
 
-AstarHelper.prototype.translatePath = function(pathToTranslate) {
-	var translatedPath = new Array;
+		var path = astar.search(this.graph, startGridNode, endGridNode);
 
-	for (var i = 0; i < pathToTranslate.length; ++ i) {
-		translatedPath.push(new Point(pathToTranslate[i].x, pathToTranslate[i].y, 0));
+		return this.translatePath(path);
+	},
+
+	translatePath : function(pathToTranslate) {
+		var translatedPath = new Array;
+
+		for (var i = 0; i < pathToTranslate.length; ++ i) {
+			translatedPath.push(new Point(pathToTranslate[i].x, pathToTranslate[i].y, 0));
+		}
+
+		return translatedPath;
 	}
 
-	return translatedPath;
-}
+};

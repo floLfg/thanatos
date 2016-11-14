@@ -2,7 +2,6 @@
 <html>
 <head>
 	<title>Overtame - Sandbox</title>
-	<a href="/">Accueil</a>
 	<style type="text/css">	
 		body {
 			margin: 0;	
@@ -16,25 +15,81 @@
 			left: 40px;
 		}
 
-		canvas {
+		.game_canvas {
 			width: 1000px;
   			height: 600px;
   			
   			position: absolute;
-  			left: calc(50% - 500px);
+  			right: 0;
 
   			cursor: pointer;
-			border: 1px solid black;
+		}
+
+		#sandbox_menu {
+			position: absolute;
+			width: calc(100% - 1000px);
+			height: 100%;
+			background-color: #400084;
+		}
+
+		.summon {
+			display: block;
+			margin: 100px auto auto auto;
+			height: 40px;
+			width: 40px;
+			border-radius: 100%;
+			border: none;
+			background-color: #fff;
+			font-size: 20px;
+			outline: none !important;
+			cursor: pointer;
+			padding: 0;
+			position: relative;
+			background-size: contain;
+		}
+
+		.summon {
+			background-image: url(./img/summon.png);
+		}
+
+		@keyframes halo {
+		    0%  {
+		    	border: 1px solid #fff;
+		    	opacity: 1;
+		    	left: -6px;
+		    	top: -6px;
+		    	height: 50px;
+				width: 50px;
+		    }
+
+		    100% {
+		    	opacity: 0.1;
+		    	left: -21px;
+		    	top: -21px;
+		    	height: 80px;
+				width: 80px;
+				border: none;
+		    }
 		}
 
 	</style>
 </head>
 <body>
 
-	<canvas width="2000" height="1200" id="sandbox_grid"></canvas>
-	<canvas width="2000" height="1200" id="sandbox_background"></canvas>
-	<canvas width="2000" height="1200" id="sandbox_models"></canvas>
-	<canvas width="2000" height="1200" id="sandbox_actions"></canvas>
+	<canvas width="2000" height="1200" class="game_canvas" id="sandbox_grid"></canvas>
+	<canvas width="2000" height="1200" class="game_canvas" id="sandbox_background"></canvas>
+	<canvas width="2000" height="1200" class="game_canvas" id="sandbox_models"></canvas>
+	<canvas width="2000" height="1200" class="game_canvas" id="sandbox_actions"></canvas>
+
+	<div width="200" height="1200" id="sandbox_menu">
+		<button class="summon" data-summon="elemental"></button>
+
+		<button class="summon" data-summon="werewolf"></button>
+
+		<button class="summon" data-summon="zombie"></button>
+
+		<button class="summon" data-summon="ogre"></button>
+	</div>
 
 <script type="text/javascript" src="/js/compatibility.js"></script>
 
@@ -43,8 +98,11 @@
 
 <script type="text/javascript" src="/js/isomer-helper.js"></script>
 <script type="text/javascript" src="/js/astar-helper.js"></script>
+
 <script type="text/javascript" src="/js/sprite.js"></script>
+<script type="text/javascript" src="/js/entity.js"></script>
 <script type="text/javascript" src="/js/character.js"></script>
+<script type="text/javascript" src="/js/invocation.js"></script>
 <script type="text/javascript" src="/js/map.js"></script>
 <script type="text/javascript" src="/js/game.js"></script>
 
